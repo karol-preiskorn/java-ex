@@ -1,1 +1,4 @@
-# wiczenia java
+# ćwiczenia java
+
+- maven
+- podstawy java

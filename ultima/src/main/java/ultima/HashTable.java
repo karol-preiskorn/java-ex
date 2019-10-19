@@ -1,8 +1,9 @@
 package ultima;
 
-// Java code illustrating clear() and clone() methods
 import java.util.Hashtable;
 
+//
+// @SuppressWarnings("unchecked")
 class HashTable {
     public static void main(String[] arg) {
         // creating a hash table
@@ -21,7 +22,7 @@ class HashTable {
         // create a clone or shallow copy of hash table h
         h1 = (Hashtable<Integer, String>) h.clone();
         h2 = (Hashtable<Integer, String>) h1.clone();
-        System.out.println("=----- s-t-a-r-t -----=");
+        System.out.println("-- start --");
         System.out.println(">h: " + h);
         System.out.println("clone h->h1: " + h1);
 
@@ -31,5 +32,11 @@ class HashTable {
         // checking hash table h
         System.out.println("after clearing h: " + h);
         System.out.println(">h1: " + h1);
+        System.out.println(">h2: " + h2);
+
+        Hashtable<?, ?> h3 = (Hashtable<?, ?>) h2.clone();
+        // String s = (String) h3.get("Qq");
+        // System.out.println(">(String) h3.get(0): " + s);
+        System.out.println(">(String) h3: " + h3);
     }
 }
