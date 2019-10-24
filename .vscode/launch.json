@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Vehicle",
+            "request": "launch",
+            "mainClass": "ultima.Vehicle",
+            "projectName": "ultimadc"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Vehicle",
+            "request": "launch",
+            "mainClass": "",
+            "projectName": "ultimadc"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - OptionalBasicExample",
+            "request": "launch",
+            "mainClass": "ultima.OptionalBasicExample",
+            "projectName": "ultimadc"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - HashTable",
             "request": "launch",
             "mainClass": "ultima.HashTable",
