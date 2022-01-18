@@ -1,28 +1,80 @@
 apply plugin: 'java'
+apply plugin: 'java-library'
 apply plugin: 'maven'
 
 group = 'ultimasolution'
-version = '0.2'
+version = '0.3'
 
-description = "ultimasolution java exercises"
+description = 'ultimasolution java exercises'
 
-sourceCompatibility = 1.5
-targetCompatibility = 1.5
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+configurations {
+    asciidoclet
+}
+
 tasks.withType(JavaCompile) {
 	options.encoding = 'UTF-8'
 }
 
+task buildJar {
+    println 'now I am building JAR file, in theory'
+}
 
+task runAllTests {
+    println 'now I am checking if all tests are passing, in theory'
+}
+
+task buildManifest(dependsOn: runAllTests) {
+    println 'now I am building JAR file, in theory'
+    jar.manifest.writeTo("$buildDir/mymanifest.mf")
+}
 
 repositories {
-
      maven { url "https://repo.maven.apache.org/maven2" }
+     mavenCentral()
+     jcenter()
 }
+
 dependencies {
     compile group: 'org.apache.logging.log4j', name: 'log4j-api', version:'2.12.1'
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version:'2.12.1'
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version:'5.5.2'
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version:'5.5.2'
-    testCompile group: 'junit', name: 'junit', version:'4.12'
     testCompile group: 'org.junit.vintage', name: 'junit-vintage-engine', version:'5.5.2'
+    asciidoclet 'org.asciidoctor:asciidoclet:1.+'
+}
+
+
+
+ext.sharedManifest = manifest {
+    attributes("Implementation-Title": "Gradle",
+               "Implementation-Version": version)
+}
+task fooJar(type: Jar) {
+    manifest = project.manifest {
+        from sharedManifest
+    }
+}
+
+jar {
+    manifest {
+        attributes("Implementation-Title": "Gradle",
+                   "Implementation-Version": version)
+    }
+}
+
+
+task configureJavadoc {
+    doLast {
+        javadoc {
+            options.doclet = 'org.asciidoctor.Asciidoclet'
+            options.docletpath = configurations.asciidoclet.files.toList()
+        }
+    }
+}
+
+javadoc {
+    dependsOn configureJavadoc
 }

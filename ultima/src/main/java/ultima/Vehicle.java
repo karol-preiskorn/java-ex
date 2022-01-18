@@ -1,7 +1,6 @@
 package ultima;
 
 import java.util.Optional;
-import java.util.logging.LogManager;
 
 public class Vehicle {
     private Optional<MusicSystem> musicSystem;
@@ -10,7 +9,8 @@ public class Vehicle {
         return musicSystem;
     }
 
-    private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = org.apache.Logger.LogManager.getLogger();
+    
 
     public static void main(String[] args) {
         MusicSystem lc_ms = new MusicSystem();
